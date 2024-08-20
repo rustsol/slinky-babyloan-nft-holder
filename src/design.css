@@ -1,0 +1,131 @@
+/* design.css */
+
+.outerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f4f8;
+    position: relative;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input {
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .optionContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .radioLabel {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+  }
+  
+  .button {
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .loadingMessage {
+    font-size: 1rem;
+    color: #1a73e8;
+    margin-top: 1rem;
+  }
+  
+  .message {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  
+  .modalText {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column;
+  }
+  
+  .loadingContent {
+    text-align: center;
+  }
+  
+  .loadingText {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+  }
+  
+  .progressBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+  }
+  
