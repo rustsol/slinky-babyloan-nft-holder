@@ -3,7 +3,7 @@ import axios from 'axios';
 import debounce from 'lodash.debounce';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ClipLoader, BarLoader } from 'react-spinners';
+import { ScaleLoader} from 'react-spinners';
 import * as XLSX from 'xlsx';
 import { Tooltip } from 'react-tooltip';
 import './design.css';  // Import the CSS file
@@ -23,8 +23,8 @@ const WalletChecker = () => {
   // Fetch and preprocess the local Excel data when the component mounts
   useEffect(() => {
     const loadLocalData = async () => {
-      setLocalDataLoading(true);
       try {
+        setLocalDataLoading(true);
         const response = await fetch('/assets/PioneerPass.xlsx');
         const data = await response.arrayBuffer();
         const workbook = XLSX.read(data, { type: 'array' });
@@ -114,73 +114,74 @@ const WalletChecker = () => {
   return (
     <div className="outerContainer">
       {isLoading && (
-        <div className="loadingOverlay">
-          <BarLoader color={"#1a73e8"} width="100%" className="progressBar" />
-          <div className="loadingContent">
-            <ClipLoader size={50} color={"#1a73e8"} />
-            <p className="loadingText">Loading, please wait...</p>
+        <>
+          
+          <div className="loadingOverlay">
+            <div className="loadingContent">
+              <ScaleLoader size={50} color={"#1a73e8"} />
+              <p className="loadingText">Loading, please wait...</p>
+            </div>
           </div>
-        </div>
+        </>
       )}
 
-      <div className="container">
-        <h1 className="title">Slinky Babylon Pioneer NFT Holder Checker</h1>
-        <input
-          type="text"
-          value={walletAddress}
-          onChange={handleInputChange}
-          placeholder="Enter your wallet address"
-          className="input"
-          disabled={isLoading} // Disable input during loading
-        />
-        <div className="optionContainer">
-          <label data-tooltip-id="localTip" className="radioLabel">
-            <input
-              type="radio"
-              value="local"
-              checked={searchOption === 'local'}
-              onChange={handleOptionChange}
-              disabled={localDataLoading || isLoading} // Disable if data is still loading
-            />
-            Search from Local Excel
-          </label>
-          <Tooltip id="localTip" place="top" effect="solid">
-            Downloaded for faster search.
-          </Tooltip>
+      {!isLoading && (
+        <div className="container">
+          <h1 className="title">Slinky Babylon Pioneer NFT Holder Checker</h1>
+          <input
+            type="text"
+            value={walletAddress}
+            onChange={handleInputChange}
+            placeholder="Enter your wallet address"
+            className="input"
+          />
+          <div className="optionContainer">
+            <label data-tooltip-id="localTip" className="radioLabel">
+              <input
+                type="radio"
+                value="local"
+                checked={searchOption === 'local'}
+                onChange={handleOptionChange}
+              />
+              Search from Local Excel
+            </label>
+            <Tooltip id="localTip" place="top" effect="solid">
+              Downloaded for faster search.
+            </Tooltip>
 
-          <label data-tooltip-id="googleTip" className="radioLabel">
-            <input
-              type="radio"
-              value="google"
-              checked={searchOption === 'google'}
-              onChange={handleOptionChange}
-              disabled={isLoading} // Disable during loading
-            />
-            Search from Google Sheets
-          </label>
-          <Tooltip id="googleTip" place="top" effect="solid">
-            Live Google Drive link.
-          </Tooltip>
+            <label data-tooltip-id="googleTip" className="radioLabel">
+              <input
+                type="radio"
+                value="google"
+                checked={searchOption === 'google'}
+                onChange={handleOptionChange}
+              />
+              Search from Google Sheets
+            </label>
+            <Tooltip id="googleTip" place="top" effect="solid">
+              Live Google Drive link.
+            </Tooltip>
+          </div>
+          <button
+            onClick={handleCheckEligibility}
+            className="button"
+            style={{ backgroundColor: isLoading ? '#ccc' : '#1a73e8' }}
+            disabled={isLoading}
+          >
+            Check Eligibility
+          </button>
+          {localDataLoading && searchOption === 'local' && (
+            <p className="loadingMessage">Loading local data, please wait...</p>
+          )}
+          <p className="message">{message}</p>
+          <ToastContainer />
         </div>
-        <button
-          onClick={handleCheckEligibility}
-          className="button"
-          style={{ backgroundColor: isLoading ? '#ccc' : '#1a73e8' }}
-          disabled={isLoading}
-        >
-          {isLoading ? <ClipLoader size={20} color={"#fff"} /> : 'Check Eligibility'}
-        </button>
-        {localDataLoading && searchOption === 'local' && (
-          <p className="loadingMessage">Loading local data, please wait...</p>
-        )}
-        <p className="message">{message}</p>
-        <ToastContainer />
-      </div>
+      )}
 
       {showModal && (
         <div className="modalOverlay">
           <div className="modal">
-            <ClipLoader size={50} color={"#1a73e8"} />
+            <ScaleLoader size={50} color={"#1a73e8"} />
             <p className="modalText">Please wait while we process your data...</p>
           </div>
         </div>
