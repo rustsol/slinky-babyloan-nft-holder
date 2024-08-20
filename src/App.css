@@ -1,0 +1,26 @@
+/* In src/App.css or equivalent CSS file */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-image: url('https://your-background-image-url.com');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input, button {
+  font-family: 'Roboto', sans-serif;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 10px #719ECE;
+}
